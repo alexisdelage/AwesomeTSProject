@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    {
+      "aspectRatio": 1,
+      "backgroundColor": "#A02132",
+      "marginBottom": 50,
+      "marginLeft": "auto",
+      "marginRight": "auto",
+      "width": 200,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#70FF70",
+        "fontSize": 50,
+        "fontWeight": "900",
+        "marginBottom": "auto",
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "marginTop": "auto",
+      }
+    }
+  >
+    Hello
+  </Text>
+</View>
+`;
