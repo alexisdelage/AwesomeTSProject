@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 function HelloWorldSquare(): JSX.Element {
   return (
     <View style={styles.square}>
-      <Text style={styles.text}>Hello!</Text>
+      <Text style={styles.text}>Hello</Text>
     </View>
   );
 }
