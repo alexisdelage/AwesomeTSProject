@@ -9,9 +9,7 @@ interface BookListProps {
 }
 
 /** component to display a Book List */
-function BookList(props: BookListProps) {
-  const {data} = props;
-
+function BookList({data}: BookListProps) {
   return (
     <FlatList
       contentContainerStyle={styles.listContainer}

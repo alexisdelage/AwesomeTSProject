@@ -8,10 +8,7 @@ interface BookListItemProps {
   book: Book;
 }
 
-/** A component to display a book in a list */
-function BookListItem(props: BookListItemProps) {
-  const {book} = props;
-
+function BookListItem({book}: BookListItemProps) {
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.itemTitle}>{book.title}</Text>
