@@ -1,6 +1,8 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
+import * as styleConstants from '../../styles';
+
 interface Book {
   title: string;
   key: string;
@@ -29,8 +31,8 @@ const styles = StyleSheet.create({
   itemContainer: {
     display: 'flex',
     justifyContent: 'center',
-    margin: 10,
-    marginLeft: 20,
+    margin: styleConstants.md,
+    marginTop: 0,
   },
   itemTitle: {
     fontWeight: 'bold',

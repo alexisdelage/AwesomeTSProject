@@ -16,7 +16,9 @@ function BookList() {
 }
 
 const styles = StyleSheet.create({
-  listContainer: {},
+  listContainer: {
+    paddingTop: 20,
+  },
 });
 
 export default BookList;

@@ -17,6 +17,7 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import BookList from './src/components/BookList';
+import * as styleConstants from './styles';
 
 /** The main component of the App */
 function App(): JSX.Element {
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    padding: styleConstants.xs,
   },
   title: {
     fontSize: 20,
