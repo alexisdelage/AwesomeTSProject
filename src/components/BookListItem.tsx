@@ -2,12 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 import * as styleConstants from '../../styles';
-
-interface Book {
-  title: string;
-  key: string;
-  author_name?: string[];
-}
+import {Book} from '../../types';
 
 interface BookListItemProps {
   book: Book;

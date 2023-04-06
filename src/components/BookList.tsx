@@ -2,14 +2,20 @@ import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
 import BookListItem from './BookListItem';
-import data from '../../data.json';
+import {Book} from '../../types';
+
+interface BookListProps {
+  data: Book[];
+}
 
 /** component to display a Book List */
-function BookList() {
+function BookList(props: BookListProps) {
+  const {data} = props;
+
   return (
     <FlatList
       contentContainerStyle={styles.listContainer}
-      data={data.docs}
+      data={data}
       renderItem={item => <BookListItem book={item.item} />}
     />
   );

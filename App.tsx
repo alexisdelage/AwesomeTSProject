@@ -18,6 +18,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import BookList from './src/components/BookList';
 import * as styleConstants from './styles';
+import data from './data.json';
 
 /** The main component of the App */
 function App(): JSX.Element {
@@ -36,7 +37,7 @@ function App(): JSX.Element {
       <View style={{...styles.titleContainer, ...backgroundStyle}}>
         <Text style={styles.title}>Books Explorer</Text>
       </View>
-      <BookList />
+      <BookList data={data.docs} />
     </SafeAreaView>
   );
 }
