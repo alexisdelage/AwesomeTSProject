@@ -6,18 +6,19 @@
  */
 
 import React from 'react';
-// import type {PropsWithChildren} from 'react';
 import {
-  FlatList,
   SafeAreaView,
   StatusBar,
+  StyleSheet,
   Text,
+  View,
   useColorScheme,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import data from './data.json';
+import BookList from './src/components/BookList';
 
+/** The main component of the App */
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -26,17 +27,33 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <FlatList
-        data={data.docs}
-        renderItem={item => <Text>{item.item.title}</Text>}
-      />
+      <View style={{...styles.titleContainer, ...backgroundStyle}}>
+        <Text style={styles.title}>Books Explorer</Text>
+      </View>
+      <BookList />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+  },
+  titleContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: 'black',
+  },
+});
 
 export default App;
