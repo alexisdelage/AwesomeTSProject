@@ -13,6 +13,8 @@
     "test:unit": "jest"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.28.0",
+    "axios": "^1.3.5",
     "react": "18.2.0",
     "react-native": "0.71.6"
   },
