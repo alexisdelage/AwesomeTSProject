@@ -5,12 +5,13 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   View,
   useColorScheme,
 } from 'react-native';
@@ -24,6 +25,7 @@ const queryClient = new QueryClient();
 
 /** The main component of the App */
 function App(): JSX.Element {
+  const [queryText, setQueryText] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -39,7 +41,13 @@ function App(): JSX.Element {
         <View style={{...styles.titleContainer, ...backgroundStyle}}>
           <Text style={styles.title}>Books Explorer</Text>
         </View>
-        <BookList />
+        <TextInput
+          style={styles.input}
+          onChangeText={setQueryText}
+          testID="queryInput"
+          placeholder="Search"
+        />
+        <BookList query={queryText} />
       </SafeAreaView>
     </QueryClientProvider>
   );
@@ -58,6 +66,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: 'black',
+  },
+  input: {
+    margin: styleConstants.xs,
+    paddingLeft: styleConstants.xs,
+    paddingRight: styleConstants.xs,
+    borderWidth: 1,
   },
 });
 

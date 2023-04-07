@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import {FlatList, StyleSheet, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+  View,
+} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 import axios, {AxiosError} from 'axios';
 
@@ -7,16 +13,19 @@ import BookListItem from './BookListItem';
 import {Book, Page} from '../../types';
 import * as styleConstants from '../../styles';
 
-function BookList() {
-  const [author, _] = useState('William Shakespeare');
+interface BookListProps {
+  query: string;
+}
 
+function BookList({query}: BookListProps) {
+  const debouncedQuery = useDebounce(query, 300);
   const bookQuery = useQuery<Page<Book>, AxiosError>({
-    queryKey: ['book-list', author],
+    queryKey: ['book-list', debouncedQuery],
     queryFn: () =>
       axios
         .get<Page<Book>>('https://openlibrary.org/search.json', {
           params: {
-            author: author,
+            q: debouncedQuery,
             fields: ['title', 'key', 'author_name'],
             limit: 50,
             offset: 0,
@@ -26,7 +35,11 @@ function BookList() {
   });
 
   if (bookQuery.isLoading) {
-    return <Text style={styles.textMessage}>Loading...</Text>;
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 
   if (bookQuery.isError) {
@@ -54,9 +67,28 @@ const styles = StyleSheet.create({
   listContainer: {
     paddingTop: styleConstants.md,
   },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   textMessage: {
     margin: styleConstants.md,
   },
 });
+
+function useDebounce<T>(value: T, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    // Cancel the timeout if value changes (also on delay change or unmount)
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+  return debouncedValue;
+}
 
 export default BookList;

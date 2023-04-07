@@ -5,7 +5,7 @@ import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import nock from 'nock';
 
 import BookList from '../../src/components/BookList';
-import data from '../../data.json';
+import data from '../mock-data/tolkien.json';
 
 it('renders correctly', async () => {
   // the query client
@@ -18,7 +18,7 @@ it('renders correctly', async () => {
   // try to render the component
   render(
     <QueryClientProvider client={queryClient}>
-      <BookList />
+      <BookList query="J.R.R. Tolkien" />
     </QueryClientProvider>,
   );
   // wait data is loaded
